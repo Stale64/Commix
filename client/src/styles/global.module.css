@@ -18,6 +18,8 @@
   top: 20px !important;
   right: 20px !important;
   width: 360px !important;
+  max-width: calc(100vw - 40px) !important;
+  z-index: 1080;
 }
 
 .removeFocus:focus,
@@ -29,7 +31,7 @@
 
 @keyframes slideIn {
   0% {
-    transform: translateX(100px);
+    transform: translateX(100%);
     opacity: 0;
   }
   100% {
@@ -44,7 +46,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateX(100px);
+    transform: translateX(100%);
     opacity: 0;
   }
 }
@@ -55,4 +57,52 @@
 
 .slideOut {
   animation: slideOut 0.8s forwards;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #F0F0F0;
+  overflow: scroll;
+}
+
+.profileImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBar::placeholder {
+  color: #CDCDCD !important;
+  font-weight: 100;
+}
+
+.searchBar:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.fromMessageBorderRadius {
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+}
+
+.toMessageBorderRadius {
+  border-radius: 10px;
+  border-bottom-right-radius: 0px;
+  text-align: right;
+}
+
+.chatScrollArea {
+  height: 620px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chatScrollArea::-webkit-scrollbar {
+  display: none;
 }
