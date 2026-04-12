@@ -1,7 +1,7 @@
 package com.commix.server.service;
 
-import com.commix.server.model.CustomUserDetails;
-import com.commix.server.model.UserModel;
+import com.commix.server.model.data.CustomUserDetails;
+import com.commix.server.model.data.UserModel;
 import com.commix.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

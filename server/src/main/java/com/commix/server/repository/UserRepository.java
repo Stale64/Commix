@@ -1,6 +1,6 @@
 package com.commix.server.repository;
 
-import com.commix.server.model.UserModel;
+import com.commix.server.model.data.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.commix.server.model;
+package com.commix.server.model.data;
 
 import jakarta.persistence.*;
 import lombok.Data;

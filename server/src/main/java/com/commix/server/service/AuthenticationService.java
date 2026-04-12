@@ -2,7 +2,7 @@ package com.commix.server.service;
 
 import com.commix.server.dto.request.LoginRequestDTO;
 import com.commix.server.exceptions.authentication.UsernameAlreadyExistException;
-import com.commix.server.model.UserModel;
+import com.commix.server.model.data.UserModel;
 import com.commix.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

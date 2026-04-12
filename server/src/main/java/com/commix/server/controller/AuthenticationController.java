@@ -3,7 +3,7 @@ package com.commix.server.controller;
 import com.commix.server.dto.request.LoginRequestDTO;
 import com.commix.server.dto.response.LoginResponseDTO;
 import com.commix.server.dto.response.ValidationResponseDTO;
-import com.commix.server.model.UserModel;
+import com.commix.server.model.data.UserModel;
 import com.commix.server.service.AuthenticationService;
 import com.commix.server.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
