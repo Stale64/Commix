@@ -2,11 +2,12 @@ import { useAuth } from "../context/AuthContext";
 import Sidebar from "../components/dashboard/Sidebar";
 import ChatWindow from "../components/dashboard/ChatWindow";
 import ContactPreview from "../components/dashboard/ContactPreview";
+import { useChat } from "../context/ChatContext";
 
 
 const CONTACTS = [
-  { username: "Andrew", lastMessage: "Peace across the world Peace across the world Peace across the world ", lastUpdated: "10:45 PM", indicator: "✓✓" },
-  { username: "Maya Chen", lastMessage: "Can we sync tomorrow?", lastUpdated: "9:12 PM", indicator: 3 },
+  { username: "Rahul", lastMessage: "Peace across the world Peace across the world Peace across the world ", lastUpdated: "10:45 PM", indicator: "✓✓" },
+  { username: "Pavan", lastMessage: "Can we sync tomorrow?", lastUpdated: "9:12 PM", indicator: 3 },
   { username: "Jordan Lee", lastMessage: "Sent the deck — thoughts?", lastUpdated: "8:30 PM", indicator: "✓" },
   { username: "Sam Rivera", lastMessage: "Sounds good to me", lastUpdated: "Yesterday", indicator: "✓✓" },
   { username: "Priya Nair", lastMessage: "Reminder: standup at 9", lastUpdated: "6:02 PM", indicator: 1 },
@@ -29,11 +30,17 @@ const CONTACTS = [
 
 function Dashboard() {
   const { user } = useAuth();
+  const { contact, handleContactClick } = useChat();
+
   return (
     <>
       <div className="d-flex">
-        <Sidebar username={user.username} contacts={CONTACTS}/>
-        <ChatWindow username="Pavan Kumar"/>
+        <Sidebar
+          username={user.username}
+          contacts={CONTACTS}
+          onContactSelect={handleContactClick}
+        />
+        <ChatWindow username={contact} />
         <ContactPreview username="Pavan Kumar"/>
       </div>
     </>

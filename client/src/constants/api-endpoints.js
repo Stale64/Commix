@@ -4,3 +4,8 @@ export const authEndpoints = {
   logout: "auth/logout",
   validate: "auth/validate",
 };
+
+
+export const chatEndpoints = {
+  chat: "chat"
+}

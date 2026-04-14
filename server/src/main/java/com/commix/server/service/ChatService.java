@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
@@ -17,15 +19,26 @@ public class ChatService {
     @Autowired
     private ChatRepository chatRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     private String getHash(String a, String b) {
-        String hashString = a + b;
-        char[] chars = hashString.toCharArray();
-        Arrays.sort(chars);
-        String sortedHash = new String(chars);
-        return passwordEncoder.encode(sortedHash);
+        try {
+            String combined = a + b;
+            char[] chars = combined.toCharArray();
+            Arrays.sort(chars);
+            String sorted = new String(chars);
+
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(sorted.getBytes());
+
+            StringBuilder hex = new StringBuilder();
+            for (byte b1 : hashBytes) {
+                hex.append(String.format("%02x", b1));
+            }
+
+            return hex.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addMessage(MessageModel messageModel) {
@@ -34,7 +47,7 @@ public class ChatService {
         chatModel.setChatHash(chatHash);
         chatModel.setSender(messageModel.getSender());
         chatModel.setMessage(messageModel.getMessage());
-        chatModel.setTimestamp(messageModel.getTimestamp());
+        chatModel.setTimestamp(Instant.now());
         chatRepository.save(chatModel);
     }
 

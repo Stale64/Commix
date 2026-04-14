@@ -1,14 +1,21 @@
 package com.commix.server.controller;
 
 import com.commix.server.model.common.MessageModel;
+import com.commix.server.model.data.ChatModel;
 import com.commix.server.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.List;
+
+@RestController
 public class ChatController {
 
     @Autowired
@@ -17,7 +24,7 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @MessageMapping("chat/private")
+    @MessageMapping("/chat/private")
     public void sendMessageToUser(@Payload MessageModel messageModel) {
         messagingTemplate.convertAndSendToUser(
                 messageModel.getReceiver(),   // 👈 USED HERE
@@ -25,5 +32,11 @@ public class ChatController {
                 messageModel
         );
         chatService.addMessage(messageModel);
+    }
+
+    @GetMapping("/chat")
+    public ResponseEntity<List<ChatModel>> getAllMessages(@RequestParam String username, @RequestParam String contact) {
+        List<ChatModel> messages = chatService.getAllContactMessages(username, contact);
+        return ResponseEntity.ok(messages);
     }
 }

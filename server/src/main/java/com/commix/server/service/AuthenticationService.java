@@ -41,7 +41,6 @@ public class AuthenticationService {
     public UserModel validate() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        System.out.println("Username: " + username);
         return userRepository.findByUsername(username);
     }
 }

@@ -1,10 +1,13 @@
 import Styles from "../../styles/global.module.css";
 
 function ContactCard(prop) {
+  const clickHandler = () => {
+    prop.onSelect?.(prop.username);
+  };
 
   return (
     <>
-      <div className="d-flex mb-4" role="button">
+      <div className="d-flex mb-4" role="button" onClick={clickHandler}>
         <div className={`bg-primary flex-shrink-0 rounded-circle text-white ${Styles.profileImage}`}>{prop.username[0]}</div>
         <div className="ms-2 mt-1 text-primary" style={{width: "200px"}}>
           <div className="text-truncate">{prop.username}</div>

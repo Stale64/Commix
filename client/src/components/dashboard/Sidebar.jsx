@@ -28,6 +28,7 @@ function Sidebar(prop) {
                         lastMessage={contact.lastMessage}
                         lastUpdated={contact.lastUpdated}
                         indicator={contact.indicator}
+                        onSelect={prop.onContactSelect}
                     />
                 ))}
 
