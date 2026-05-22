@@ -1,4 +1,4 @@
-package com.commix.server.model.data;
+package com.commix.server.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

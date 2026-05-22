@@ -1,10 +1,9 @@
 package com.commix.server.service;
 
-import com.commix.server.model.common.MessageModel;
-import com.commix.server.model.data.ChatModel;
+import com.commix.server.dto.MessageDTO;
+import com.commix.server.model.MessageModel;
 import com.commix.server.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -41,9 +40,9 @@ public class ChatService {
         }
     }
 
-    public void addMessage(MessageModel messageModel) {
+    public void addMessage(MessageDTO messageModel) {
         String chatHash = getHash(messageModel.getSender(), messageModel.getReceiver());
-        ChatModel chatModel = new ChatModel();
+        MessageModel chatModel = new MessageModel();
         chatModel.setChatHash(chatHash);
         chatModel.setSender(messageModel.getSender());
         chatModel.setMessage(messageModel.getMessage());
@@ -52,7 +51,7 @@ public class ChatService {
     }
 
 
-    public List<ChatModel> getAllContactMessages(String username, String contact) {
+    public List<MessageModel> getAllContactMessages(String username, String contact) {
         String chatHash = getHash(username, contact);
         return chatRepository.findChatModelsByChatHash(chatHash);
     }

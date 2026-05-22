@@ -1,4 +1,4 @@
-package com.commix.server.model.data;
+package com.commix.server.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,8 +9,8 @@ import java.time.Instant;
 @Data
 @Entity
 @ToString
-@Table(name = "Chat")
-public class ChatModel {
+@Table(name = "messages")
+public class MessageModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cid;
